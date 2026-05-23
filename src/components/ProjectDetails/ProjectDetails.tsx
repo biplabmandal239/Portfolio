@@ -1,7 +1,8 @@
 import { CloseRounded, GitHub, LinkedIn } from '@mui/icons-material';
 import {
-  Button,
+  ActionButton,
   ButtonGroup,
+  CloseButton,
   Container,
   Date,
   Description,
@@ -28,34 +29,40 @@ const ProjectDetails = ({ openModal, setOpenModal }: ProjectDetailsProps) => {
   }
 
   return (
-    <StyledModal open onClose={() => setOpenModal({ state: false, project: null })}>
+    <StyledModal open={openModal.state} onClose={() => setOpenModal({ state: false, project: null })}>
       <Container>
         <Wrapper>
-          <CloseRounded
-            style={{ position: 'absolute', top: '10px', right: '20px', cursor: 'pointer' }}
+          <CloseButton
+            aria-label="Close project details"
             onClick={() => setOpenModal({ state: false, project: null })}
-          />
+          >
+            <CloseRounded />
+          </CloseButton>
           <Image src={project.image} alt={project.title} />
           <Title>{project.title}</Title>
           <Date>{project.date}</Date>
-          <Tags>
+          <Tags direction="row" flexWrap="wrap">
             {project.tags.map((tag) => (
-              <Tag key={`${project.id}-${tag}`}>{tag}</Tag>
+              <Tag key={`${project.id}-${tag}`} label={tag} />
             ))}
           </Tags>
           <Description>{project.description}</Description>
           {project.member && (
             <>
               <Label>Members</Label>
-              <Members>
+              <Members spacing={0.75}>
                 {project.member.map((member) => (
-                  <Member key={`${project.id}-${member.name}`}>
+                  <Member
+                    key={`${project.id}-${member.name}`}
+                    direction="row"
+                    spacing={1.5}
+                  >
                     <MemberImage src={member.img} alt={member.name} />
                     <MemberName>{member.name}</MemberName>
-                    <ExternalLink href={member.github} target="new" rel="noreferrer">
+                    <ExternalLink href={member.github} target="_blank" rel="noreferrer">
                       <GitHub />
                     </ExternalLink>
-                    <ExternalLink href={member.linkedin} target="new" rel="noreferrer">
+                    <ExternalLink href={member.linkedin} target="_blank" rel="noreferrer">
                       <LinkedIn />
                     </ExternalLink>
                   </Member>
@@ -63,13 +70,28 @@ const ProjectDetails = ({ openModal, setOpenModal }: ProjectDetailsProps) => {
               </Members>
             </>
           )}
-          <ButtonGroup>
-            <Button $dull href={project.github} target="new" rel="noreferrer">
-              View Code
-            </Button>
-            <Button href={project.webapp} target="new" rel="noreferrer">
+          <ButtonGroup direction="row" spacing={1.5} justifyContent="flex-end">
+            {project.showCodeButton && (
+              <ActionButton
+                component="a"
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                fullWidth
+                $dull
+              >
+                View Code
+              </ActionButton>
+            )}
+            <ActionButton
+              component="a"
+              href={project.webapp}
+              target="_blank"
+              rel="noreferrer"
+              fullWidth
+            >
               View Live App
-            </Button>
+            </ActionButton>
           </ButtonGroup>
         </Wrapper>
       </Container>

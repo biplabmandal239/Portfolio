@@ -1,12 +1,18 @@
 import Timeline from '@mui/lab/Timeline';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import EducationCard from '../Cards/EducationCard/EducationCard';
 import { education } from '../../data/constants';
-import { Container, Description, TimelineSection, Title, Wrapper } from './style';
+import {
+  Container,
+  Description,
+  StyledTimelineConnector,
+  StyledTimelineContent,
+  TimelineSection,
+  Title,
+  Wrapper
+} from './style';
 
 const Education = () => (
   <Container id="education">
@@ -20,13 +26,13 @@ const Education = () => (
         <Timeline>
           {education.map((item, index) => (
             <TimelineItem key={item.id}>
-              <TimelineContent sx={{ py: '12px', px: 2 }}>
+              <StyledTimelineContent>
                 <EducationCard education={item} />
-              </TimelineContent>
+              </StyledTimelineContent>
               <TimelineSeparator>
                 <TimelineDot variant="outlined" color="secondary" />
                 {index !== education.length - 1 && (
-                  <TimelineConnector style={{ background: '#854CE6' }} />
+                  <StyledTimelineConnector />
                 )}
               </TimelineSeparator>
             </TimelineItem>

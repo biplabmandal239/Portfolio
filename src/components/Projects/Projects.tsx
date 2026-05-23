@@ -5,7 +5,7 @@ import {
   CardContainer,
   Container,
   Description,
-  Divider,
+  StyledDivider,
   Title,
   ToggleButton,
   ToggleButtonGroup,
@@ -40,14 +40,10 @@ const Projects = ({ setOpenModal }: ProjectsProps) => {
         <ToggleButtonGroup>
           {filters.map((filter, index) => (
             <Fragment key={filter}>
-              <ToggleButton
-                type="button"
-                $active={toggle === filter}
-                onClick={() => setToggle(filter)}
-              >
+              <ToggleButton $active={toggle === filter} onClick={() => setToggle(filter)}>
                 {getLabel(filter)}
               </ToggleButton>
-              {index < filters.length - 1 && <Divider />}
+              {index < filters.length - 1 && <StyledDivider orientation="vertical" flexItem />}
             </Fragment>
           ))}
         </ToggleButtonGroup>

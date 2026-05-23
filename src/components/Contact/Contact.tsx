@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Alert, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import {
   ContactButton,
   ContactForm,
@@ -11,6 +11,7 @@ import {
   Description,
   ErrorText,
   FieldGroup,
+  SnackbarAlert,
   Title,
   Wrapper
 } from './style';
@@ -307,14 +308,14 @@ const Contact = () => {
           />
         </ContactForm>
         <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
-          <Alert onClose={() => setOpen(false)} severity="success" sx={{ width: '100%' }}>
+          <SnackbarAlert onClose={() => setOpen(false)} severity="success">
             Email sent successfully!
-          </Alert>
+          </SnackbarAlert>
         </Snackbar>
         <Snackbar open={errorOpen} autoHideDuration={6000} onClose={() => setErrorOpen(false)}>
-          <Alert onClose={() => setErrorOpen(false)} severity="error" sx={{ width: '100%' }}>
+          <SnackbarAlert onClose={() => setErrorOpen(false)} severity="error">
             {errorMessage}
-          </Alert>
+          </SnackbarAlert>
         </Snackbar>
       </Wrapper>
     </Container>

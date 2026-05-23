@@ -1,3 +1,4 @@
+import { Alert } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { SectionContainer, SectionDescription, SectionTitle, SectionWrapper } from '../../styles/section';
 import { gradients } from '../../styles/theme';
@@ -83,4 +84,10 @@ export const ErrorText = styled.span`
   line-height: 1.4;
   color: #ff8e8e;
   padding: 0 4px;
+`;
+
+export const SnackbarAlert = styled(Alert)`
+  &.MuiAlert-root {
+    width: 100%;
+  }
 `;

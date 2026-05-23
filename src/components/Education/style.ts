@@ -1,3 +1,5 @@
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
 import styled from 'styled-components';
 import { SectionContainer, SectionDescription, SectionTitle, SectionWrapper } from '../../styles/section';
 
@@ -24,5 +26,20 @@ export const TimelineSection = styled.div`
 
   @media (max-width: 660px) {
     align-items: flex-end;
+  }
+`;
+
+export const StyledTimelineConnector = styled(TimelineConnector)`
+  &.MuiTimelineConnector-root {
+    background: #854ce6;
+  }
+`;
+
+export const StyledTimelineContent = styled(TimelineContent)`
+  &.MuiTimelineContent-root {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;

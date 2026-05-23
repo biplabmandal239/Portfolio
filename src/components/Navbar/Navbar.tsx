@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { DiCssdeck } from 'react-icons/di';
 import { Bio } from '../../data/constants';
@@ -7,9 +7,11 @@ import { scrollToSection } from '../../utils/scrollToSection';
 import { useActiveSection } from '../../utils/useActiveSection';
 import {
   Brand,
+  BrandWrapper,
   ButtonContainer,
   GitHubButton,
   MobileIcon,
+  MobileGitHubButton,
   MobileLink,
   MobileMenu,
   Nav,
@@ -17,29 +19,82 @@ import {
   NavLink,
   NavLogo,
   NavbarContainer,
-  Span
+  Span,
+  ThemeMenu,
+  ThemeMenuTitle,
+  ThemeOptionButton
 } from './style';
+import { NavbarProps } from './types';
 
-const Navbar = () => {
+const Navbar = ({ darkMode, onThemeChange }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const { activeSection, setActiveSection } = useActiveSection();
+  const themeMenuRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = () => setIsOpen(false);
+  const closeThemeMenu = () => setIsThemeMenuOpen(false);
 
   const handleSectionClick = (sectionId: NavigationSectionId): void => {
     setActiveSection(sectionId);
     scrollToSection(sectionId);
     closeMenu();
+    closeThemeMenu();
   };
+
+  const handleThemeSelect = (isDarkMode: boolean): void => {
+    onThemeChange(isDarkMode);
+    closeThemeMenu();
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent): void => {
+      if (!themeMenuRef.current?.contains(event.target as Node)) {
+        closeThemeMenu();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo to="/">
-          <Brand>
-            <DiCssdeck size="3rem" />
-            <Span>Portfolio</Span>
-          </Brand>
+        <NavLogo>
+          <BrandWrapper ref={themeMenuRef}>
+            <Brand
+              onClick={(event) => {
+                event.preventDefault();
+                setIsThemeMenuOpen((open) => !open);
+              }}
+            >
+              <DiCssdeck size="3rem" />
+              <Span>Portfolio</Span>
+            </Brand>
+            {isThemeMenuOpen && (
+              <ThemeMenu>
+                <ThemeMenuTitle>Choose Theme</ThemeMenuTitle>
+                <ThemeOptionButton
+                  type="button"
+                  $active={darkMode}
+                  onClick={() => handleThemeSelect(true)}
+                >
+                  Dark
+                </ThemeOptionButton>
+                <ThemeOptionButton
+                  type="button"
+                  $active={!darkMode}
+                  onClick={() => handleThemeSelect(false)}
+                >
+                  Light
+                </ThemeOptionButton>
+              </ThemeMenu>
+            )}
+          </BrandWrapper>
         </NavLogo>
         <MobileIcon
           type="button"
@@ -83,19 +138,9 @@ const Navbar = () => {
                 {link.label}
               </MobileLink>
             ))}
-            <GitHubButton
-              href={Bio.github}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                padding: '10px 16px',
-                background: '#854CE6',
-                color: 'white',
-                width: 'max-content'
-              }}
-            >
+            <MobileGitHubButton href={Bio.github} target="_blank" rel="noreferrer">
               Github Profile
-            </GitHubButton>
+            </MobileGitHubButton>
           </MobileMenu>
         )}
       </NavbarContainer>

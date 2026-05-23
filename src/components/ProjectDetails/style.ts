@@ -1,10 +1,20 @@
-import styled, { css } from 'styled-components';
-import { Modal } from '@mui/material';
-import { ButtonProps } from './types';
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  IconButton,
+  Link,
+  Modal,
+  Stack,
+  Typography
+} from '@mui/material';
+import styled from 'styled-components';
+import { layout, radii } from '../../styles/theme';
 
 export const StyledModal = styled(Modal)``;
 
-export const Container = styled.div`
+export const Container = styled(Box)`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -14,14 +24,14 @@ export const Container = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: all 0.5s ease;
 `;
 
-export const Wrapper = styled.div`
-  max-width: 800px;
+export const Wrapper = styled(Box)`
+  max-width: ${layout.maxModalWidth};
   width: 100%;
-  border-radius: 16px;
+  border-radius: ${radii.lg};
   margin: 50px 12px;
   height: min-content;
   background-color: ${({ theme }) => theme.card};
@@ -32,42 +42,16 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const Title = styled.div`
-  font-size: 28px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.textPrimary};
-  margin: 8px 6px 0;
-
-  @media only screen and (max-width: 600px) {
-    font-size: 24px;
-    margin: 6px 6px 0;
+export const CloseButton = styled(IconButton)`
+  &.MuiButtonBase-root {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: ${({ theme }) => theme.textPrimary};
   }
 `;
 
-export const Date = styled.div`
-  font-size: 16px;
-  margin: 2px 6px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.textSecondary};
-
-  @media only screen and (max-width: 768px) {
-    font-size: 12px;
-  }
-`;
-
-export const Description = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.textPrimary};
-  margin: 8px 6px;
-
-  @media only screen and (max-width: 600px) {
-    font-size: 14px;
-    margin: 6px;
-  }
-`;
-
-export const Image = styled.img`
+export const Image = styled(Box).attrs({ component: 'img' })`
   width: 100%;
   object-fit: cover;
   border-radius: 12px;
@@ -75,21 +59,38 @@ export const Image = styled.img`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 `;
 
-export const Label = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.textPrimary};
-  margin: 8px 6px;
+export const Title = styled(Typography).attrs({ component: 'h3' })`
+  &.MuiTypography-root {
+    font-size: 28px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.textPrimary};
+    margin: 8px 6px 0;
+  }
 
   @media only screen and (max-width: 600px) {
-    font-size: 16px;
-    margin: 8px 6px;
+    &.MuiTypography-root {
+      font-size: 24px;
+      margin: 6px 6px 0;
+    }
   }
 `;
 
-export const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+export const Date = styled(Typography)`
+  &.MuiTypography-root {
+    font-size: 16px;
+    margin: 2px 6px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.textSecondary};
+  }
+
+  @media only screen and (max-width: 768px) {
+    &.MuiTypography-root {
+      font-size: 12px;
+    }
+  }
+`;
+
+export const Tags = styled(Stack)`
   margin: 8px 0;
 
   @media only screen and (max-width: 600px) {
@@ -97,25 +98,57 @@ export const Tags = styled.div`
   }
 `;
 
-export const Tag = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.primary};
-  margin: 4px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  background-color: ${({ theme }) => `${theme.primary}20`};
+export const Tag = styled(Chip)`
+  &.MuiChip-root {
+    font-size: 14px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.primary};
+    margin: 4px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background-color: ${({ theme }) => `${theme.primary}20`};
+  }
 
   @media only screen and (max-width: 600px) {
-    font-size: 12px;
+    &.MuiChip-root {
+      font-size: 12px;
+    }
   }
 `;
 
-export const Members = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-wrap: wrap;
+export const Description = styled(Typography)`
+  &.MuiTypography-root {
+    font-size: 16px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.textPrimary};
+    margin: 8px 6px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    &.MuiTypography-root {
+      font-size: 14px;
+      margin: 6px;
+    }
+  }
+`;
+
+export const Label = styled(Typography)`
+  &.MuiTypography-root {
+    font-size: 20px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.textPrimary};
+    margin: 8px 6px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    &.MuiTypography-root {
+      font-size: 16px;
+      margin: 8px 6px;
+    }
+  }
+`;
+
+export const Members = styled(Stack)`
   margin: 12px 6px;
 
   @media only screen and (max-width: 600px) {
@@ -123,74 +156,73 @@ export const Members = styled.div`
   }
 `;
 
-export const Member = styled.div`
-  display: flex;
+export const Member = styled(Stack)`
   align-items: center;
   gap: 12px;
 `;
 
-export const MemberImage = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 4px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+export const MemberImage = styled(Avatar)`
+  &.MuiAvatar-root {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 4px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  }
 
   @media only screen and (max-width: 600px) {
-    width: 32px;
-    height: 32px;
+    &.MuiAvatar-root {
+      width: 32px;
+      height: 32px;
+    }
   }
 `;
 
-export const MemberName = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  width: 200px;
-  color: ${({ theme }) => theme.textPrimary};
+export const MemberName = styled(Typography)`
+  &.MuiTypography-root {
+    font-size: 16px;
+    font-weight: 500;
+    width: 200px;
+    color: ${({ theme }) => theme.textPrimary};
+  }
 
   @media only screen and (max-width: 600px) {
-    font-size: 14px;
+    &.MuiTypography-root {
+      font-size: 14px;
+    }
   }
 `;
 
-export const ExternalLink = styled.a`
-  text-decoration: none;
-  color: inherit;
+export const ExternalLink = styled(Link)`
+  &.MuiLink-root {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
-export const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
+export const ButtonGroup = styled(Stack)`
   margin: 12px 0;
-  gap: 12px;
 `;
 
-export const Button = styled.a<ButtonProps>`
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.textPrimary};
-  padding: 12px 16px;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.primary};
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.5s ease;
+export const ActionButton = styled(Button)<{ $dull?: boolean }>`
+  &.MuiButton-root {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: ${({ $dull, theme }) => ($dull ? theme.textSecondary : theme.textPrimary)};
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: ${({ $dull, theme }) => ($dull ? theme.bgLight : theme.primary)};
+    text-transform: none;
+  }
 
-  ${({ $dull, theme }) =>
-    $dull &&
-    css`
-      background-color: ${theme.bgLight};
-      color: ${theme.textSecondary};
-    `}
-
-  &:hover {
+  &.MuiButton-root:hover {
     background-color: ${({ $dull, theme }) => ($dull ? `${theme.bg}99` : `${theme.primary}99`)};
   }
 
   @media only screen and (max-width: 600px) {
-    font-size: 12px;
+    &.MuiButton-root {
+      font-size: 12px;
+    }
   }
 `;

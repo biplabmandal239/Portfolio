@@ -28,7 +28,6 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <Logo>Biplab Mandal</Logo>
         <Nav>
           {NAVIGATION_SECTIONS.map((link) => (
             <NavLink

@@ -1,9 +1,9 @@
+import { Box, ButtonBase, Divider, Typography } from '@mui/material';
 import styled from 'styled-components';
-import { SectionDescription, SectionTitle, SectionWrapper } from '../../styles/section';
-import { gradients } from '../../styles/theme';
+import { gradients, layout, spacing } from '../../styles/theme';
 import { ToggleButtonProps } from './types';
 
-export const Container = styled.section`
+export const Container = styled(Box).attrs({ component: 'section' })`
   background: ${gradients.projectAccent};
   display: flex;
   flex-direction: column;
@@ -14,14 +14,51 @@ export const Container = styled.section`
   clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 98%, 0 100%);
 `;
 
-export const Wrapper = styled(SectionWrapper)`
-  padding: 10px 0 100px;
+export const Wrapper = styled(Box)`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: ${layout.maxSectionWidth};
+  gap: ${spacing.md};
+  padding-top: 10px;
+  padding-bottom: 100px;
 `;
 
-export const Title = SectionTitle;
-export const Description = SectionDescription;
+export const Title = styled(Typography).attrs({ component: 'h2' })`
+  &.MuiTypography-root {
+    margin-top: ${spacing.xl};
+    font-size: 42px;
+    text-align: center;
+    font-weight: 600;
+    color: ${({ theme }) => theme.textPrimary};
+  }
 
-export const ToggleButtonGroup = styled.div`
+  @media (max-width: 768px) {
+    &.MuiTypography-root {
+      font-size: 32px;
+    }
+  }
+`;
+
+export const Description = styled(Typography)`
+  &.MuiTypography-root {
+    font-size: 18px;
+    text-align: center;
+    max-width: 600px;
+    color: ${({ theme }) => theme.textSecondary};
+  }
+
+  @media (max-width: 768px) {
+    &.MuiTypography-root {
+      font-size: 16px;
+    }
+  }
+`;
+
+export const ToggleButtonGroup = styled(Box)`
   display: flex;
   border: 1.5px solid ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.primary};
@@ -35,11 +72,9 @@ export const ToggleButtonGroup = styled.div`
   }
 `;
 
-export const ToggleButton = styled.button<ToggleButtonProps>`
+export const ToggleButton = styled(ButtonBase)<ToggleButtonProps>`
   padding: 8px 18px;
   border-radius: 6px;
-  cursor: pointer;
-  border: 0;
   color: inherit;
   background: ${({ $active, theme }) => ($active ? `${theme.primary}20` : 'transparent')};
 
@@ -53,12 +88,13 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
   }
 `;
 
-export const Divider = styled.div`
-  width: 1.5px;
-  background: ${({ theme }) => theme.primary};
+export const StyledDivider = styled(Divider)`
+  &.MuiDivider-root {
+    border-color: ${({ theme }) => theme.primary};
+  }
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,12 +1,18 @@
 import Timeline from '@mui/lab/Timeline';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import ExperienceCard from '../Cards/ExperienceCard/ExperienceCard';
 import { experiences } from '../../data/constants';
-import { Container, Description, TimelineSection, Title, Wrapper } from './style';
+import {
+  Container,
+  Description,
+  StyledTimelineConnector,
+  StyledTimelineContent,
+  TimelineSection,
+  Title,
+  Wrapper
+} from './style';
 
 const Experience = () => (
   <Container id="experience">
@@ -22,12 +28,12 @@ const Experience = () => (
               <TimelineSeparator>
                 <TimelineDot variant="outlined" color="secondary" />
                 {index !== experiences.length - 1 && (
-                  <TimelineConnector style={{ background: '#854CE6' }} />
+                  <StyledTimelineConnector />
                 )}
               </TimelineSeparator>
-              <TimelineContent sx={{ py: '12px', px: 2 }}>
+              <StyledTimelineContent>
                 <ExperienceCard experience={experience} />
-              </TimelineContent>
+              </StyledTimelineContent>
             </TimelineItem>
           ))}
         </Timeline>

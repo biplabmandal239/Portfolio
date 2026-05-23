@@ -61,6 +61,7 @@ export interface ProjectItem {
   image: string;
   tags: string[];
   category: ProjectCategory;
+  showCodeButton: boolean;
   github: string;
   webapp: string;
   member?: ProjectMember[];

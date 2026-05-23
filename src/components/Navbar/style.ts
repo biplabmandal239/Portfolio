@@ -1,7 +1,6 @@
-import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { media, radii, spacing } from '../../styles/theme';
-import { MobileMenuProps, NavigationLinkProps } from './types';
+import { MobileMenuProps, NavigationLinkProps, ThemeOptionButtonProps } from './types';
 
 export const Nav = styled.header`
   background-color: ${({ theme }) => theme.cardLight};
@@ -26,7 +25,7 @@ export const NavbarContainer = styled.div`
   max-width: 1200px;
 `;
 
-export const NavLogo = styled(RouterLink)`
+export const NavLogo = styled.div`
   width: 80%;
   padding: 0 6px;
   display: flex;
@@ -39,10 +38,16 @@ export const NavLogo = styled(RouterLink)`
   }
 `;
 
+export const BrandWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
 export const Brand = styled.span`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.textPrimary};
   cursor: pointer;
 `;
 
@@ -50,6 +55,49 @@ export const Span = styled.span`
   padding: 0 4px;
   font-weight: 700;
   font-size: 18px;
+`;
+
+export const ThemeMenu = styled.div`
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-radius: ${radii.md};
+  background: ${({ theme }) => theme.cardLight};
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid ${({ theme }) => `${theme.primary}25`};
+  z-index: 20;
+`;
+
+export const ThemeMenuTitle = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.textSecondary};
+  padding: 2px 4px 6px;
+`;
+
+export const ThemeOptionButton = styled.button<ThemeOptionButtonProps>`
+  width: 100%;
+  border: 0;
+  border-radius: ${radii.sm};
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: ${({ $active, theme }) => ($active ? `${theme.primary}20` : 'transparent')};
+  color: ${({ $active, theme }) => ($active ? theme.primary : theme.textPrimary)};
+  font-weight: ${({ $active }) => ($active ? 600 : 500)};
+
+  &:hover {
+    background: ${({ theme }) => `${theme.primary}14`};
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
 export const NavItems = styled.nav`
@@ -100,6 +148,13 @@ export const GitHubButton = styled.a`
   ${media.tablet} {
     font-size: 14px;
   }
+`;
+
+export const MobileGitHubButton = styled(GitHubButton)`
+  padding: 10px 16px;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+  width: max-content;
 `;
 
 export const ButtonContainer = styled.div`

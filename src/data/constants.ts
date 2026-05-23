@@ -182,11 +182,12 @@ export const projects: ProjectItem[] = [
     title: 'AgScout',
     date: 'May 2025 - Present',
     description:
-      'Smart Farm Management System â€“ A comprehensive farm management application designed to streamline agricultural operations. The system enables farmers to manage workers, track inventory, monitor resources, and optimize daily activities. It integrates workforce scheduling, equipment usage, crop planning, and inventory management into a single platform, helping farmers improve productivity, reduce costs, and make data-driven decisions',
+      'Smart Farm Management System – A comprehensive farm management platform designed to streamline agricultural operations and improve overall efficiency. The system enables farmers to manage workers, track inventory, monitor resources, and optimize daily activities. By integrating workforce scheduling, equipment utilization, crop planning, and inventory management into a single solution, it helps farms increase productivity, reduce operational costs, and support better data-driven decision-making.',
     image:
       'https://agscout.ai/wp-content/uploads/2024/04/scout-logo.png',
     tags: ['React', 'Typescript', 'Node Js', 'Graph QL', 'Redux', 'CSS3', 'HTML5'],
     category: 'web app',
+    showCodeButton: false,
     github: '',
     webapp: 'https://appstaging.agscout.ai/'
   },
@@ -198,6 +199,7 @@ export const projects: ProjectItem[] = [
     image: 'https://i.ibb.co/CFK6C2L/feature-graphic-1024x500.png',
     tags: ['React Js', 'JavaScript', 'Redux', 'HTML5', 'CSS3', 'Node Js', 'REST APIs'],
     category: 'web app',
+    showCodeButton: false,
     github: '',
     webapp: 'https://ssuites.simpsoftapps.com/'
   },
@@ -210,6 +212,7 @@ export const projects: ProjectItem[] = [
     image: 'https://simpvault.simpsoftapps.com/assets/simpvault-logo-full-8b5d6914.png',
     tags: ['React Js', 'JavaScript', 'Node Js', 'HTML5', 'CSS3', 'Redux'],
     category: 'web app',
+    showCodeButton: false,
     github: '',
     webapp: 'https://simpvault.simpsoftapps.com/'
   },
@@ -222,6 +225,7 @@ export const projects: ProjectItem[] = [
     image: 'https://simpvault.simpsoftapps.com/assets/simpvault-logo-full-8b5d6914.png',
     tags: ['React Native', 'Android Studio', 'JavaScript', 'HTML5', 'CSS3', 'Redux'],
     category: 'android app',
+    showCodeButton: false,
     github: '',
     webapp: 'https://play.google.com/store/apps/details?id=com.simpsoftapps.simpvault'
   },
@@ -233,9 +237,9 @@ export const projects: ProjectItem[] = [
     image: 'https://i.ibb.co/CFK6C2L/feature-graphic-1024x500.png',
     tags: ['React Native', 'JavaScript', 'Axios', 'Redux', 'Node Js'],
     category: 'android app',
+    showCodeButton: false,
     github: '',
     webapp: 'https://play.google.com/store/apps/details?id=com.simpsoftapps.ssuites'
   }
 ];
-
 
